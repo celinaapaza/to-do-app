@@ -24,6 +24,7 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
   package_rename: ^1.8.0
+  flutter_launcher_icons: ^0.14.3
 
 flutter:
   uses-material-design: true
@@ -56,3 +57,13 @@ package_rename_config:
   android:
     app_name: To-Do App
     package_name: com.celina.todoapp
+
+flutter_icons:
+# Add icon in this folder and complete the path. Then run: flutter pub get 
+# Finally run: dart run flutter_launcher_icons
+  # Global
+  image_path: "images/icon_app/icon_app.png"
+  # Android
+  android: "launcher_icon"
+  adaptive_icon_background: "#333333"
+  # adaptive_icon_foreground: "images/icon_app/icon_app.png"
