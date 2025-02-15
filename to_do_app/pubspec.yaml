@@ -1,0 +1,58 @@
+name: to_do_app
+description: "A new app for task management."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.2
+  mvc_pattern: ^8.12.0
+  collection: ^1.19.1
+  shared_preferences: ^2.5.2
+  shimmer: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  package_rename: ^1.8.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/
+
+  fonts:
+  - family: Inter
+    fonts:
+      - asset: fonts/inter/INTER-REGULAR.ttf
+      - asset: fonts/inter/INTER-THIN.ttf
+        weight: 100
+      - asset: fonts/inter/INTER-EXTRALIGHT.ttf
+        weight: 200
+      - asset: fonts/inter/INTER-LIGHT.ttf
+        weight: 300
+      - asset: fonts/inter/INTER-MEDIUM.ttf
+        weight: 500
+      - asset: fonts/inter/INTER-SEMIBOLD.ttf
+        weight: 600
+      - asset: fonts/inter/INTER-BOLD.ttf
+        weight: 700
+      - asset: fonts/inter/INTER-EXTRABOLD.ttf
+        weight: 800
+      - asset: fonts/inter/INTER-BLACK.ttf
+        weight: 900
+
+package_rename_config:
+  android:
+    app_name: To-Do App
+    package_name: com.celina.todoapp
