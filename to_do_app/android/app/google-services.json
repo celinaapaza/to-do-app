@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56926563412",
+    "project_id": "to-do-app-74123",
+    "storage_bucket": "to-do-app-74123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56926563412:android:2cece4e256a955e8db91c1",
+        "android_client_info": {
+          "package_name": "com.celina.todoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC30FqAnbcH5eTRHJf5C1hnKa2ogMDIl9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

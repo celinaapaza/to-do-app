@@ -44,6 +44,12 @@ class TaskDetailPageController extends ControllerMVC
     PageManager().goBack();
   }
 
+  void onTapTaskCheckBox(bool newvalue) {
+    setState(() {
+      task?.isCompleted = newvalue;
+    });
+  }
+
   void onTapEdit() {
     PageManager().goCreateOrEditTaskPage(args: PageArgs(task: task));
   }

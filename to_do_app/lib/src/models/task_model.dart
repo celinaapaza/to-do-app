@@ -42,4 +42,12 @@ class TaskModel {
 
   TaskPriorityEnum? get taskPriority => TaskPriorityEnum.values
       .firstWhereOrNull((element) => element.id == _taskPriorityId);
+
+  String expirationDateFormat() {
+    return getFormattedDate(expirationDate);
+  }
+
+  String expirtaionTimeFormat() {
+    return getFormattedTime(expirationDate);
+  }
 }

@@ -7,6 +7,7 @@ import 'package:to_do_app/utils/k_colors.dart';
 import 'package:to_do_app/utils/k_texts.dart';
 
 //Project imports:
+import '../components/custom_button_component.dart';
 import '../components/task_card_component.dart';
 import '../page_controllers/task_detail_page_controller.dart';
 
@@ -78,8 +79,8 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
               expirationDate: _con.task?.expirationDate,
               taskPriority: _con.task?.taskPriority,
               isCompleted: _con.task?.isCompleted ?? false,
-              // onTapCheckBox:
-              //     (bool newValue) => _con.onTapTaskCheckBox(task, newValue),
+              onTapCheckBox:
+                  (bool newValue) => _con.onTapTaskCheckBox(newValue),
             ),
           ),
         ),
@@ -93,7 +94,8 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
       child: Row(
         children: [
           Expanded(
-            child: _button(
+            child: customButtonComponent(
+              context,
               kTextDelete,
               Icons.delete_outline_rounded,
               kColorRedT1,
@@ -102,36 +104,12 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
           ),
           const SizedBox(width: 20),
           Expanded(
-            child: _button(
+            child: customButtonComponent(
+              context,
               kTextEdit,
               Icons.mode_edit_outlined,
               kColorPrimary,
               _con.onTapEdit,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _button(String text, IconData icon, Color color, Function onTap) {
-    return ElevatedButton(
-      onPressed: () {
-        onTap();
-      },
-      style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-        backgroundColor: WidgetStatePropertyAll(color),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon),
-          const SizedBox(width: 5),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
             ),
           ),
         ],

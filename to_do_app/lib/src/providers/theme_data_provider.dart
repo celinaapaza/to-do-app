@@ -129,6 +129,9 @@ class ThemeDataProvider with ChangeNotifier {
         ),
       ),
     ),
+    radioTheme: const RadioThemeData(
+      fillColor: WidgetStatePropertyAll(kColorPrimary),
+    ),
   );
 
   final ThemeData _themeDataDark = ThemeData(
@@ -239,6 +242,9 @@ class ThemeDataProvider with ChangeNotifier {
           ),
         ),
       ),
+    ),
+    radioTheme: const RadioThemeData(
+      fillColor: WidgetStatePropertyAll(kColorPrimary),
     ),
   );
 }
