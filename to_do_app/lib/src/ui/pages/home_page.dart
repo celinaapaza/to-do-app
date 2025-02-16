@@ -59,7 +59,7 @@ class HomePageState extends StateMVC<HomePage> {
 
   Widget _fab() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: _con.onTapFab,
       child: Icon(
         Icons.add,
         color:
@@ -253,15 +253,27 @@ class HomePageState extends StateMVC<HomePage> {
           padding: EdgeInsets.only(
             top: index == 0 ? 15 : 0,
             bottom: index == _con.tasks.length - 1 ? 40 : 0,
+            left: 20,
+            right: 20,
           ),
-          child: TaskCardComponent(
-            title: task.title,
-            description: task.description,
-            expirationDate: task.expirationDate,
-            taskPriority: task.taskPriority,
-            isCompleted: task.isCompleted,
-            onTapCheckBox:
-                (bool newValue) => _con.onTapTaskCheckBox(task, newValue),
+          child: GestureDetector(
+            onTap: () {
+              _con.onTapTask(task);
+            },
+            child: Hero(
+              tag: task.hashCode.toString(),
+              child: TaskCardComponent(
+                title: task.title,
+                description: task.description,
+                expirationDate: task.expirationDate,
+                taskPriority: task.taskPriority,
+                isCompleted: task.isCompleted,
+                darkenIsCompleted: true,
+                maxLineDescription: 2,
+                onTapCheckBox:
+                    (bool newValue) => _con.onTapTaskCheckBox(task, newValue),
+              ),
+            ),
           ),
         );
       },

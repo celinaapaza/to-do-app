@@ -18,6 +18,8 @@ class TaskCardComponent extends StatefulWidget {
   final bool isCompleted;
   final TaskPriorityEnum? taskPriority;
   final Function(bool)? onTapCheckBox;
+  final bool darkenIsCompleted;
+  final int? maxLineDescription;
 
   const TaskCardComponent({
     this.title,
@@ -26,6 +28,8 @@ class TaskCardComponent extends StatefulWidget {
     this.isCompleted = false,
     this.taskPriority,
     this.onTapCheckBox,
+    this.maxLineDescription,
+    this.darkenIsCompleted = false,
     super.key,
   });
 
@@ -36,93 +40,103 @@ class TaskCardComponent extends StatefulWidget {
 class _TaskCardComponentState extends State<TaskCardComponent> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color:
-            context.watch<ThemeDataProvider>().darkMode
-                ? kColorBackgroundDark
-                : kColorBackgroundLight,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: widget.taskPriority?.color ?? kColorGreen,
-          width: 5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color:
-                context.watch<ThemeDataProvider>().darkMode
-                    ? kColorShadowDark
-                    : kColorBackgroundDarkWithOpacity,
-            spreadRadius: 0,
-            blurRadius: 10,
-            blurStyle: BlurStyle.solid,
-            offset: const Offset(0, 0),
+    return Material(
+      color: kColorTransparent,
+      borderRadius: BorderRadius.circular(15),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.linear,
+        decoration: BoxDecoration(
+          color:
+              widget.darkenIsCompleted && widget.isCompleted
+                  ? kColorDesabled
+                  : context.watch<ThemeDataProvider>().darkMode
+                  ? kColorBackgroundDark
+                  : kColorBackgroundLight,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: widget.taskPriority?.color ?? kColorGreen,
+            width: 5,
           ),
-        ],
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _getEmoji(),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title ?? '',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 10),
-                Text.rich(
-                  TextSpan(
-                    text: "$kTextDescription: ",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: widget.description ?? '-',
-
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 10),
-                Text.rich(
-                  TextSpan(
-                    text: "$kTextExpirationDateShort: ",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: getFormattedDateAndTime12H(widget.expirationDate),
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+          boxShadow: [
+            BoxShadow(
+              color:
+                  context.watch<ThemeDataProvider>().darkMode
+                      ? kColorShadowDark
+                      : kColorBackgroundDarkWithOpacity,
+              spreadRadius: 0,
+              blurRadius: 10,
+              blurStyle: BlurStyle.solid,
+              offset: const Offset(0, 0),
             ),
-          ),
-          const SizedBox(width: 10),
-          Checkbox(
-            value: widget.isCompleted,
-            onChanged: (value) {
-              widget.onTapCheckBox?.call(value ?? !widget.isCompleted);
-            },
-          ),
-        ],
+          ],
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _getEmoji(),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.title ?? '',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 10),
+                  Text.rich(
+                    TextSpan(
+                      text: "$kTextDescription: ",
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: widget.description ?? '-',
+
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                    maxLines: widget.maxLineDescription,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 10),
+                  Text.rich(
+                    TextSpan(
+                      text: "$kTextExpirationDateShort: ",
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: getFormattedDateAndTime12H(
+                            widget.expirationDate,
+                          ),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 10),
+            Checkbox(
+              value: widget.isCompleted,
+              onChanged: (value) {
+                widget.onTapCheckBox?.call(value ?? !widget.isCompleted);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

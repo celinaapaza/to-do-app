@@ -109,6 +109,26 @@ class ThemeDataProvider with ChangeNotifier {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: kColorPrimary,
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        padding: WidgetStateProperty.all(
+          const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        ),
+        backgroundColor: const WidgetStatePropertyAll(kColorPrimary),
+        iconColor: const WidgetStatePropertyAll(kColorWhite),
+        iconSize: const WidgetStatePropertyAll(25),
+        textStyle: const WidgetStatePropertyAll(
+          TextStyle(
+            color: kColorWhite,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    ),
   );
 
   final ThemeData _themeDataDark = ThemeData(
@@ -199,6 +219,26 @@ class ThemeDataProvider with ChangeNotifier {
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: kColorPrimary,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        padding: WidgetStateProperty.all(
+          const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        ),
+        backgroundColor: const WidgetStatePropertyAll(kColorPrimary),
+        iconColor: const WidgetStatePropertyAll(kColorBlack),
+        iconSize: const WidgetStatePropertyAll(25),
+        textStyle: const WidgetStatePropertyAll(
+          TextStyle(
+            color: kColorBlack,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
     ),
   );
 }

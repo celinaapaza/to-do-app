@@ -1,6 +1,7 @@
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:to_do_app/src/managers/data_manager.dart';
+import 'package:to_do_app/src/managers/page_manager.dart';
 import 'package:to_do_app/src/providers/theme_data_provider.dart';
 
 //Project imports:
@@ -43,12 +44,22 @@ class HomePageController extends ControllerMVC implements IPageController {
 
   void onPopInvoked(didPop, result) {
     if (didPop) return;
+    //TODO: salir de la app??
   }
 
   void onTapTaskCheckBox(TaskModel task, bool newValue) {
+    //TODO: animation
     setState(() {
       task.isCompleted = newValue;
     });
+  }
+
+  void onTapTask(TaskModel selectedTask) {
+    PageManager().goTaskDetailPage(args: PageArgs(task: selectedTask));
+  }
+
+  void onTapFab() {
+    PageManager().goCreateOrEditTaskPage();
   }
 
   void onTapSwitchTheme() {
@@ -56,6 +67,7 @@ class HomePageController extends ControllerMVC implements IPageController {
     DataManager().setDarkMode(ThemeDataProvider().darkMode);
   }
 
+  //Dummy
   List<TaskModel> tasks = [
     TaskModel(
       taskId: 1,

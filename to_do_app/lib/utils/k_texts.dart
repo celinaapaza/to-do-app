@@ -9,3 +9,5 @@ const String kTextPending = "Pendientes";
 const String kTextUser = "Usuario";
 const String kTextTheme = "Tema";
 const String kTextLogout = "Cerrar sesión";
+const String kTextEdit = "Editar";
+const String kTextDelete = "Eliminar";

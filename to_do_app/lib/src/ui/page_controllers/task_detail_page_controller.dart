@@ -1,6 +1,11 @@
+//Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../interfaces/i_page_controller.dart';
+
+//Project imports:
 import '../../../utils/page_args.dart';
+import '../../interfaces/i_page_controller.dart';
+import '../../managers/page_manager.dart';
+import '../../models/task_model.dart';
 
 class TaskDetailPageController extends ControllerMVC
     implements IPageController {
@@ -16,8 +21,13 @@ class TaskDetailPageController extends ControllerMVC
 
   PageArgs? args;
 
+  TaskModel? task;
+
   @override
-  void initPage() {}
+  void initPage() {
+    args = PageManager().currentRoute?.settings.arguments as PageArgs?;
+    task = args?.task;
+  }
 
   @override
   disposePage() {}
@@ -25,10 +35,20 @@ class TaskDetailPageController extends ControllerMVC
   @override
   onReceiveNotification(PageArgs? args) {}
 
-  void onPopInvoked(didPop) {
+  void onPopInvoked(didPop, result) {
     if (didPop) return;
-    // ADD CODE >>>>>>
+    onBack();
+  }
 
-    // <<<<<<<<<<<<<<<
+  void onBack() {
+    PageManager().goBack();
+  }
+
+  void onTapEdit() {
+    PageManager().goCreateOrEditTaskPage(args: PageArgs(task: task));
+  }
+
+  void onTapDelete() {
+    //TODO: delete item
   }
 }

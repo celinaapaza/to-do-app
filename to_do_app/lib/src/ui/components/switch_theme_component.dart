@@ -89,12 +89,12 @@ class _SwitchThemeComponentState extends State<SwitchThemeComponent>
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(
-                    color: widget.isDarkMode ? kColorGreyL1 : kColorYellowL1,
+                    color: widget.isDarkMode ? kColorGrayL1 : kColorYellowL1,
                     borderRadius: BorderRadius.circular(60),
                     boxShadow: [
                       BoxShadow(
                         color:
-                            widget.isDarkMode ? kColorGreyL1 : kColorYellowL1,
+                            widget.isDarkMode ? kColorGrayL1 : kColorYellowL1,
                         blurRadius: 20,
                         spreadRadius: 10,
                       ),
