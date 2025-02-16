@@ -3,8 +3,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../page_controllers/task_detail_page_controller.dart';
 
 class TaskDetailPage extends StatefulWidget {
-
-  const TaskDetailPage( {super.key});
+  const TaskDetailPage({super.key});
 
   @override
   TaskDetailPageState createState() => TaskDetailPageState();
@@ -34,13 +33,7 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
     return PopScope(
       onPopInvoked: _con.onPopInvoked,
       canPop: false,
-      child: SafeArea(
-        child: Scaffold(
-          body: Container(),
-        ),
-      ),
+      child: SafeArea(child: Scaffold(body: Container())),
     );
   }
 }
-
- 

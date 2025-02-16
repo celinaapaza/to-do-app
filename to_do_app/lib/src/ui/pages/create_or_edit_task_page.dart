@@ -3,8 +3,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../page_controllers/create_or_edit_task_page_controller.dart';
 
 class CreateOrEditTaskPage extends StatefulWidget {
-
-  const CreateOrEditTaskPage( {super.key});
+  const CreateOrEditTaskPage({super.key});
 
   @override
   CreateOrEditTaskPageState createState() => CreateOrEditTaskPageState();
@@ -34,13 +33,7 @@ class CreateOrEditTaskPageState extends StateMVC<CreateOrEditTaskPage> {
     return PopScope(
       onPopInvoked: _con.onPopInvoked,
       canPop: false,
-      child: SafeArea(
-        child: Scaffold(
-          body: Container(),
-        ),
-      ),
+      child: SafeArea(child: Scaffold(body: Container())),
     );
   }
 }
-
- 

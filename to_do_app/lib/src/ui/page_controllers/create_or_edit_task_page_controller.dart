@@ -2,7 +2,8 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../../utils/page_args.dart';
 
-class CreateOrEditTaskPageController extends ControllerMVC implements IPageController {
+class CreateOrEditTaskPageController extends ControllerMVC
+    implements IPageController {
   static late CreateOrEditTaskPageController _this;
 
   factory CreateOrEditTaskPageController() {
@@ -31,4 +32,3 @@ class CreateOrEditTaskPageController extends ControllerMVC implements IPageContr
     // <<<<<<<<<<<<<<<
   }
 }
-  
