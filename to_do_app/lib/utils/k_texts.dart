@@ -1,1 +1,11 @@
-const String kTextsTitleHome = "To-Do App";
+const String kTextTitleHome = "To-Do App";
+const String kTextDescription = "Descripción";
+const String kTextExpirationDateShort = "Venc.";
+const String kTextExpirationDateLarge = "Fecha de venc.";
+const String kTextTasks = "Tareas";
+const String kTextPriority = "Prioridad";
+const String kTextCompleted = "Finalizadas";
+const String kTextPending = "Pendientes";
+const String kTextUser = "Usuario";
+const String kTextTheme = "Tema";
+const String kTextLogout = "Cerrar sesión";

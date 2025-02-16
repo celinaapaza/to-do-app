@@ -1,6 +1,7 @@
 //Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
 //Project imports:
@@ -10,7 +11,7 @@ import 'src/managers/page_manager.dart';
 import 'src/providers/theme_data_provider.dart';
 import 'utils/k_colors.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
@@ -25,6 +26,9 @@ void main() {
     overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
   );
 
+  await initializeDateFormatting('es', null);
+  await _initConfigurations();
+
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => ThemeDataProvider())],
@@ -38,8 +42,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _initConfigurations();
-
     return MaterialApp(
       title: 'TO-DO App',
       navigatorKey: PageManager().navigatorKey,
@@ -60,9 +62,9 @@ class MyApp extends StatelessWidget {
       theme: context.watch<ThemeDataProvider>().themeData,
     );
   }
+}
 
-  void _initConfigurations() {
-    DataManager().initPrefereces();
-    ThemeDataProvider().init();
-  }
+Future<void> _initConfigurations() async {
+  await DataManager().initPrefereces();
+  ThemeDataProvider().init();
 }

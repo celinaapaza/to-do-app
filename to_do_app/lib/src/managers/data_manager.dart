@@ -17,7 +17,7 @@ class DataManager {
 
   DataManager._constructor();
 
-  initPrefereces() async {
+  Future<void> initPrefereces() async {
     prefs = await SharedPreferences.getInstance();
   }
 

@@ -20,8 +20,11 @@ class ThemeDataProvider with ChangeNotifier {
   bool _darkMode = false;
   ThemeData? _themeData;
 
+  bool get darkMode => _darkMode;
+
   void setDarkMode(bool value) {
     _darkMode = value;
+    notifyListeners();
     _setThemeData(_darkMode ? _themeDataDark : _themeDataLight);
   }
 
@@ -36,12 +39,49 @@ class ThemeDataProvider with ChangeNotifier {
     useMaterial3: true,
     fontFamily: 'Inter',
     primaryColor: kColorPrimary,
-    appBarTheme: AppBarTheme(backgroundColor: kColorPrimary),
+    appBarTheme: AppBarTheme(
+      backgroundColor: kColorPrimary,
+      shadowColor: kColorBackgroundDarkWithOpacity,
+      elevation: 5,
+      iconTheme: IconThemeData(color: kColorWhite),
+    ),
+    drawerTheme: DrawerThemeData(backgroundColor: kColorBackgroundLight),
     scaffoldBackgroundColor: kColorBackgroundLight,
-
+    textTheme: TextTheme(
+      titleLarge: TextStyle(
+        color: kColorWhite,
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+      ),
+      titleMedium: TextStyle(
+        color: kColorTextLight,
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+      titleSmall: TextStyle(
+        color: kColorTextLight,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+      bodyLarge: TextStyle(
+        color: kColorTextLight,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: TextStyle(
+        color: kColorTextLight,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: TextStyle(
+        color: kColorTextLight,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: kColorPrimary,
-      selectionColor: kColorPrimaryWithOpacity,
+      selectionColor: kColorShadowLight,
       selectionHandleColor: kColorPrimary,
     ),
     bottomSheetTheme: BottomSheetThemeData(
@@ -65,6 +105,9 @@ class ThemeDataProvider with ChangeNotifier {
           return kColorWhite;
         }
       }),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: kColorPrimary,
     ),
   );
 
@@ -72,12 +115,64 @@ class ThemeDataProvider with ChangeNotifier {
     useMaterial3: true,
     fontFamily: 'Inter',
     primaryColor: kColorPrimary,
-    appBarTheme: AppBarTheme(backgroundColor: kColorPrimary),
-    scaffoldBackgroundColor: kColorBackgroundLight,
-
+    appBarTheme: AppBarTheme(
+      backgroundColor: kColorPrimary,
+      shadowColor: kColorShadowDark,
+      elevation: 5,
+      iconTheme: IconThemeData(color: kColorBlack),
+    ),
+    drawerTheme: DrawerThemeData(backgroundColor: kColorBackgroundDark),
+    scaffoldBackgroundColor: kColorBackgroundDark,
+    textTheme: TextTheme(
+      titleLarge: TextStyle(
+        color: kColorBlack,
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+      ),
+      titleMedium: TextStyle(
+        color: kColorTextDark,
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+      titleSmall: TextStyle(
+        color: kColorTextDark,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+      bodyLarge: TextStyle(
+        color: kColorTextDark,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: TextStyle(
+        color: kColorTextDark,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: TextStyle(
+        color: kColorTextDark,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      labelLarge: TextStyle(
+        color: kColorTextDark,
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+      labelMedium: TextStyle(
+        color: kColorTextDark,
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
+      labelSmall: TextStyle(
+        color: kColorTextDark,
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: kColorPrimary,
-      selectionColor: kColorPrimaryWithOpacity,
+      selectionColor: kColorShadowLight,
       selectionHandleColor: kColorPrimary,
     ),
     bottomSheetTheme: BottomSheetThemeData(
@@ -101,6 +196,9 @@ class ThemeDataProvider with ChangeNotifier {
           return kColorWhite;
         }
       }),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: kColorPrimary,
     ),
   );
 }

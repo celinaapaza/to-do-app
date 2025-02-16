@@ -1,6 +1,18 @@
+//Flutter imports:
 import 'package:flutter/material.dart';
+
+//Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/src/enums/task_order_type_enum.dart';
+import 'package:to_do_app/src/ui/components/switch_theme_component.dart';
+import 'package:to_do_app/utils/k_colors.dart';
+
+//Project imports:
 import '../../../utils/k_texts.dart';
+import '../../models/task_model.dart';
+import '../../providers/theme_data_provider.dart';
+import '../components/task_card_component.dart';
 import '../page_controllers/home_page_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,19 +50,218 @@ class HomePageState extends StateMVC<HomePage> {
         child: Scaffold(
           appBar: _appBar(),
           body: _body(),
-          floatingActionButton: FloatingActionButton(onPressed: () {}),
+          floatingActionButton: _fab(),
+          drawer: _drawer(),
         ),
       ),
     );
   }
 
+  Widget _fab() {
+    return FloatingActionButton(
+      onPressed: () {},
+      child: Icon(
+        Icons.add,
+        color:
+            context.watch<ThemeDataProvider>().darkMode
+                ? kColorBlack
+                : kColorWhite,
+        size: 30,
+      ),
+    );
+  }
+
   AppBar _appBar() {
-    return AppBar(title: Text(kTextsTitleHome), centerTitle: true, actions: [
-      
-    ],);
+    return AppBar(
+      title: Text(
+        kTextTitleHome,
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+      centerTitle: true,
+    );
+  }
+
+  Widget _drawer() {
+    return Drawer(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: kColorPrimary,
+                size: 25,
+              ),
+            ),
+            SizedBox(height: 20),
+            _userProfile(),
+            Divider(height: 40),
+            Text(
+              kTextTheme,
+              style: Theme.of(context).textTheme.titleSmall,
+              textAlign: TextAlign.start,
+              maxLines: 2,
+            ),
+            SizedBox(height: 20),
+            SwitchThemeComponent(
+              isDarkMode: context.watch<ThemeDataProvider>().darkMode,
+              onTap: _con.onTapSwitchTheme,
+            ),
+            const Spacer(),
+            _logout(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _userProfile() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          height: 50,
+          width: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: kColorPrimary, width: 4),
+          ),
+          child: Center(
+            child: Icon(Icons.person_rounded, color: kColorPrimary, size: 40),
+          ),
+        ),
+        SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                kTextUser,
+                style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.start,
+                maxLines: 2,
+              ),
+              Text(
+                //TODO emial
+                "apazacelina@gmail.com",
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.start,
+                maxLines: 2,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _logout() {
+    return GestureDetector(
+      onTap: () {
+        //TODO:
+      },
+      child: Row(
+        children: [
+          Icon(Icons.logout_rounded, color: kColorPrimary, size: 30),
+          SizedBox(width: 10),
+          Text(kTextLogout, style: Theme.of(context).textTheme.titleSmall),
+        ],
+      ),
+    );
   }
 
   Widget _body() {
-    return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [_header(), Expanded(child: _taskList())],
+    );
+  }
+
+  Widget _header() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 15, bottom: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              kTextTasks,
+              style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              //TODO: onTap Filters
+            },
+            child: Row(
+              children: [
+                Icon(
+                  _con.filter.ascendingOrder
+                      ? Icons.keyboard_arrow_up_rounded
+                      : Icons.keyboard_arrow_down_rounded,
+                  color: kColorPrimary,
+                  size: 30,
+                ),
+                Text(
+                  _con.filter.taskOrderType?.label ?? "-",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: kColorPrimary),
+                ),
+                SizedBox(width: 5),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              //TODO: onTap Filters
+            },
+            child: Row(
+              children: [
+                Icon(Icons.filter_alt_outlined, color: kColorPrimary, size: 25),
+                Text(
+                  "(${_con.filter.totalFilterApplied})",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: kColorPrimary),
+                ),
+                SizedBox(width: 5),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _taskList() {
+    return ListView.separated(
+      itemCount: _con.tasks.length,
+      itemBuilder: (context, index) {
+        TaskModel task = _con.tasks[index];
+        return Padding(
+          padding: EdgeInsets.only(
+            top: index == 0 ? 15 : 0,
+            bottom: index == _con.tasks.length - 1 ? 40 : 0,
+          ),
+          child: TaskCardComponent(
+            title: task.title,
+            description: task.description,
+            expirationDate: task.expirationDate,
+            taskPriority: task.taskPriority,
+            isCompleted: task.isCompleted,
+            onTapCheckBox:
+                (bool newValue) => _con.onTapTaskCheckBox(task, newValue),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) => SizedBox(height: 15),
+    );
   }
 }
