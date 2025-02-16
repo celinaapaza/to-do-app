@@ -39,15 +39,15 @@ class ThemeDataProvider with ChangeNotifier {
     useMaterial3: true,
     fontFamily: 'Inter',
     primaryColor: kColorPrimary,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: kColorPrimary,
       shadowColor: kColorBackgroundDarkWithOpacity,
       elevation: 5,
       iconTheme: IconThemeData(color: kColorWhite),
     ),
-    drawerTheme: DrawerThemeData(backgroundColor: kColorBackgroundLight),
+    drawerTheme: const DrawerThemeData(backgroundColor: kColorBackgroundLight),
     scaffoldBackgroundColor: kColorBackgroundLight,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         color: kColorWhite,
         fontSize: 20,
@@ -79,17 +79,17 @@ class ThemeDataProvider with ChangeNotifier {
         fontWeight: FontWeight.w400,
       ),
     ),
-    textSelectionTheme: TextSelectionThemeData(
+    textSelectionTheme: const TextSelectionThemeData(
       cursorColor: kColorPrimary,
       selectionColor: kColorShadowLight,
       selectionHandleColor: kColorPrimary,
     ),
-    bottomSheetTheme: BottomSheetThemeData(
+    bottomSheetTheme: const BottomSheetThemeData(
       modalElevation: 0,
       modalBackgroundColor: kColorBackgroundLight,
       dragHandleSize: Size(32, 4),
       dragHandleColor: kColorPrimary,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -106,7 +106,7 @@ class ThemeDataProvider with ChangeNotifier {
         }
       }),
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: kColorPrimary,
     ),
   );
@@ -115,15 +115,15 @@ class ThemeDataProvider with ChangeNotifier {
     useMaterial3: true,
     fontFamily: 'Inter',
     primaryColor: kColorPrimary,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: kColorPrimary,
       shadowColor: kColorShadowDark,
       elevation: 5,
       iconTheme: IconThemeData(color: kColorBlack),
     ),
-    drawerTheme: DrawerThemeData(backgroundColor: kColorBackgroundDark),
+    drawerTheme: const DrawerThemeData(backgroundColor: kColorBackgroundDark),
     scaffoldBackgroundColor: kColorBackgroundDark,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       titleLarge: TextStyle(
         color: kColorBlack,
         fontSize: 20,
@@ -170,17 +170,17 @@ class ThemeDataProvider with ChangeNotifier {
         fontWeight: FontWeight.w600,
       ),
     ),
-    textSelectionTheme: TextSelectionThemeData(
+    textSelectionTheme: const TextSelectionThemeData(
       cursorColor: kColorPrimary,
       selectionColor: kColorShadowLight,
       selectionHandleColor: kColorPrimary,
     ),
-    bottomSheetTheme: BottomSheetThemeData(
+    bottomSheetTheme: const BottomSheetThemeData(
       modalElevation: 0,
       modalBackgroundColor: kColorBackgroundLight,
       dragHandleSize: Size(32, 4),
       dragHandleColor: kColorPrimary,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -197,7 +197,7 @@ class ThemeDataProvider with ChangeNotifier {
         }
       }),
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: kColorPrimary,
     ),
   );

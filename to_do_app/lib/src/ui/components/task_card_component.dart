@@ -56,17 +56,17 @@ class _TaskCardComponentState extends State<TaskCardComponent> {
             spreadRadius: 0,
             blurRadius: 10,
             blurStyle: BlurStyle.solid,
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _getEmoji(),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -77,7 +77,7 @@ class _TaskCardComponentState extends State<TaskCardComponent> {
                   widget.title ?? '',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text.rich(
                   TextSpan(
                     text: "$kTextDescription: ",
@@ -95,7 +95,7 @@ class _TaskCardComponentState extends State<TaskCardComponent> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text.rich(
                   TextSpan(
                     text: "$kTextExpirationDateShort: ",
@@ -115,7 +115,7 @@ class _TaskCardComponentState extends State<TaskCardComponent> {
               ],
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Checkbox(
             value: widget.isCompleted,
             onChanged: (value) {

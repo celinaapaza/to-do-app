@@ -52,13 +52,13 @@ class PageManager {
   Widget _getPage(PageNames? page) {
     switch (page) {
       case PageNames.init:
-        return InitPage();
+        return const InitPage();
       case PageNames.home:
-        return HomePage();
+        return const HomePage();
       case PageNames.taskDetail:
-        return TaskDetailPage();
+        return const TaskDetailPage();
       case PageNames.creatOrEditTask:
-        return CreateOrEditTaskPage();
+        return const CreateOrEditTaskPage();
       default:
         return throw Exception("No existe página con este PageName");
     }

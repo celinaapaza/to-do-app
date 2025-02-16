@@ -92,22 +92,22 @@ class HomePageState extends StateMVC<HomePage> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back_ios_rounded,
                 color: kColorPrimary,
                 size: 25,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _userProfile(),
-            Divider(height: 40),
+            const Divider(height: 40),
             Text(
               kTextTheme,
               style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.start,
               maxLines: 2,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SwitchThemeComponent(
               isDarkMode: context.watch<ThemeDataProvider>().darkMode,
               onTap: _con.onTapSwitchTheme,
@@ -131,11 +131,11 @@ class HomePageState extends StateMVC<HomePage> {
             borderRadius: BorderRadius.circular(50),
             border: Border.all(color: kColorPrimary, width: 4),
           ),
-          child: Center(
+          child: const Center(
             child: Icon(Icons.person_rounded, color: kColorPrimary, size: 40),
           ),
         ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,8 +167,8 @@ class HomePageState extends StateMVC<HomePage> {
       },
       child: Row(
         children: [
-          Icon(Icons.logout_rounded, color: kColorPrimary, size: 30),
-          SizedBox(width: 10),
+          const Icon(Icons.logout_rounded, color: kColorPrimary, size: 30),
+          const SizedBox(width: 10),
           Text(kTextLogout, style: Theme.of(context).textTheme.titleSmall),
         ],
       ),
@@ -214,7 +214,7 @@ class HomePageState extends StateMVC<HomePage> {
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: kColorPrimary),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
               ],
             ),
           ),
@@ -224,14 +224,18 @@ class HomePageState extends StateMVC<HomePage> {
             },
             child: Row(
               children: [
-                Icon(Icons.filter_alt_outlined, color: kColorPrimary, size: 25),
+                const Icon(
+                  Icons.filter_alt_outlined,
+                  color: kColorPrimary,
+                  size: 25,
+                ),
                 Text(
                   "(${_con.filter.totalFilterApplied})",
                   style: Theme.of(
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: kColorPrimary),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
               ],
             ),
           ),
@@ -261,7 +265,7 @@ class HomePageState extends StateMVC<HomePage> {
           ),
         );
       },
-      separatorBuilder: (context, index) => SizedBox(height: 15),
+      separatorBuilder: (context, index) => const SizedBox(height: 15),
     );
   }
 }
