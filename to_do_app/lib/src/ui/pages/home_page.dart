@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/src/enums/task_order_type_enum.dart';
-import 'package:to_do_app/src/ui/components/switch_theme_component.dart';
-import 'package:to_do_app/utils/k_colors.dart';
 
 //Project imports:
+import '../../../utils/k_colors.dart';
 import '../../../utils/k_texts.dart';
+import '../../enums/task_order_type_enum.dart';
 import '../../models/task_model.dart';
 import '../../providers/theme_data_provider.dart';
+import '../components/switch_theme_component.dart';
 import '../components/task_card_component.dart';
 import '../page_controllers/home_page_controller.dart';
 
@@ -147,8 +147,7 @@ class HomePageState extends StateMVC<HomePage> {
                 maxLines: 2,
               ),
               Text(
-                //TODO emial
-                "apazacelina@gmail.com",
+                _con.userEmail,
                 style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.start,
                 maxLines: 2,
@@ -162,9 +161,7 @@ class HomePageState extends StateMVC<HomePage> {
 
   Widget _logout() {
     return GestureDetector(
-      onTap: () {
-        //TODO:
-      },
+      onTap: _con.onTapLogout,
       child: Row(
         children: [
           const Icon(Icons.logout_rounded, color: kColorPrimary, size: 30),

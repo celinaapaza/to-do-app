@@ -5,11 +5,14 @@ import 'package:to_do_app/src/managers/page_manager.dart';
 import 'package:to_do_app/src/providers/theme_data_provider.dart';
 
 //Project imports:
+import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../enums/task_order_type_enum.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../models/filter_task_model.dart';
 import '../../models/task_model.dart';
+import '../popups/alert_popup.dart';
+import '../popups/loading_popup.dart';
 
 class HomePageController extends ControllerMVC implements IPageController {
   static late HomePageController _this;
@@ -47,6 +50,8 @@ class HomePageController extends ControllerMVC implements IPageController {
     //TODO: salir de la app??
   }
 
+  String get userEmail => DataManager().getUserPrefs()?.email ?? "-";
+
   void onTapTaskCheckBox(TaskModel task, bool newValue) {
     //TODO: animation
     setState(() {
@@ -65,6 +70,25 @@ class HomePageController extends ControllerMVC implements IPageController {
   void onTapSwitchTheme() {
     ThemeDataProvider().setDarkMode(!ThemeDataProvider().darkMode);
     DataManager().setDarkMode(ThemeDataProvider().darkMode);
+  }
+
+  void onTapLogout() async {
+    await LoadingPopup(
+      context: PageManager().currentContext,
+      onLoading: DataManager().logout(),
+      onError: (error) {
+        AlertPopup(
+          context: PageManager().currentContext,
+          title: kTextTitleError,
+          description: error.toString(),
+        ).show();
+      },
+      onResult: (bool? result) {
+        if (result == true) {
+          PageManager().goSignInPage();
+        }
+      },
+    ).show();
   }
 
   //Dummy

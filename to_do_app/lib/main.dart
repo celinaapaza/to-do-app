@@ -1,8 +1,10 @@
 //Flutter imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_app/firebase_options.dart';
 
 //Project imports:
 import 'src/enums/page_names_enum.dart';
@@ -28,6 +30,8 @@ void main() async {
 
   await initializeDateFormatting('es', null);
   await _initConfigurations();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
     MultiProvider(

@@ -10,9 +10,13 @@ import '../interfaces/i_page_controller.dart';
 import '../ui/page_controllers/create_or_edit_task_page_controller.dart';
 import '../ui/page_controllers/home_page_controller.dart';
 import '../ui/page_controllers/init_page_controller.dart';
+import '../ui/page_controllers/sign_in_page_controller.dart';
+import '../ui/page_controllers/sign_up_page_controller.dart';
 import '../ui/page_controllers/task_detail_page_controller.dart';
 import '../ui/pages/create_or_edit_task_page.dart';
 import '../ui/pages/home_page.dart';
+import '../ui/pages/sign_in_page.dart';
+import '../ui/pages/sign_up_page.dart';
 import '../ui/pages/task_detail_page.dart';
 
 class PageManager {
@@ -51,6 +55,10 @@ class PageManager {
 
   Widget _getPage(PageNames? page) {
     switch (page) {
+      case PageNames.signIn:
+        return const SignInPage();
+      case PageNames.signUp:
+        return const SignUpPage();
       case PageNames.init:
         return const InitPage();
       case PageNames.home:
@@ -66,6 +74,10 @@ class PageManager {
 
   IPageController _getPageController(PageNames? page) {
     switch (page) {
+      case PageNames.signIn:
+        return SignInPageController();
+      case PageNames.signUp:
+        return SignUpPageController();
       case PageNames.init:
         return InitPageController();
       case PageNames.home:
@@ -141,6 +153,14 @@ class PageManager {
   //#region Pages
 
   //NAV EXAMPLE:
+  goSignInPage({PageArgs? args}) {
+    _goPage(PageNames.signIn, args: args, makeRootPage: true);
+  }
+
+  goSignUpPage({PageArgs? args}) {
+    _goPage(PageNames.signUp, args: args, makeRootPage: true);
+  }
+
   goHomePage({PageArgs? args}) {
     _goPage(PageNames.home, args: args, makeRootPage: true);
   }

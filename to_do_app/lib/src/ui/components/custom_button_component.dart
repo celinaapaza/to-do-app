@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget customButtonComponent(
   BuildContext context,
   String text,
-  IconData icon,
+  IconData? icon,
   Color color,
   Function onTap,
 ) {
@@ -18,7 +18,7 @@ Widget customButtonComponent(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon),
+        if (icon != null) Icon(icon),
         const SizedBox(width: 5),
         Text(
           text,

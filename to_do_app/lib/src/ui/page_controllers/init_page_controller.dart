@@ -39,6 +39,7 @@ class InitPageController extends ControllerMVC implements IPageController {
 
   void goInitialPage() {
     //TODO: depende de si hay sesion o no
-    PageManager().goHomePage();
+    PageManager().goSignInPage();
+    // PageManager().goHomePage();
   }
 }
