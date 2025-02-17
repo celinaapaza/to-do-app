@@ -4,15 +4,15 @@ import 'package:flutter/widgets.dart';
 //Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:to_do_app/src/managers/data_manager.dart';
-import 'package:to_do_app/src/ui/popups/alert_popup.dart';
 
 //Project imports:
 import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../interfaces/i_page_controller.dart';
+import '../../managers/data_manager.dart';
 import '../../managers/page_manager.dart';
 import '../../models/task_model.dart';
+import '../popups/alert_popup.dart';
 
 class TaskDetailPageController extends ControllerMVC
     implements IPageController {

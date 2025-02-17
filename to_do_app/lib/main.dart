@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/firebase_options.dart';
 
 //Project imports:
+import 'firebase_options.dart';
 import 'src/enums/page_names_enum.dart';
 import 'src/managers/data_manager.dart';
 import 'src/managers/page_manager.dart';

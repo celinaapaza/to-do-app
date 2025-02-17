@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:to_do_app/src/ui/components/custom_button_component.dart';
 
 //Project imports:
 import '../../../utils/k_assets.dart';
 import '../../../utils/k_colors.dart';
 import '../../../utils/k_texts.dart';
+import '../components/custom_button_component.dart';
 import '../components/text_field_component.dart';
 import '../page_controllers/sign_up_page_controller.dart';
 

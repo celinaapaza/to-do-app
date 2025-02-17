@@ -1,4 +1,5 @@
-import 'package:to_do_app/utils/k_texts.dart';
+//Project imports:
+import '../../utils/k_texts.dart';
 
 enum TaskOrderTypeEnum { expirationDate, priority }
 

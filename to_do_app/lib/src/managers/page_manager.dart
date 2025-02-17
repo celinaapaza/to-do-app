@@ -1,7 +1,6 @@
 //Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:to_do_app/src/ui/pages/init_page.dart';
 
 //Project imports:
 import '../../utils/page_args.dart';
@@ -15,6 +14,7 @@ import '../ui/page_controllers/sign_up_page_controller.dart';
 import '../ui/page_controllers/task_detail_page_controller.dart';
 import '../ui/pages/create_or_edit_task_page.dart';
 import '../ui/pages/home_page.dart';
+import '../ui/pages/init_page.dart';
 import '../ui/pages/sign_in_page.dart';
 import '../ui/pages/sign_up_page.dart';
 import '../ui/pages/task_detail_page.dart';

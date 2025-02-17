@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:to_do_app/utils/k_colors.dart';
-import 'package:to_do_app/utils/k_texts.dart';
 
 //Project imports:
+import '../../../utils/k_colors.dart';
+import '../../../utils/k_texts.dart';
 import '../components/custom_button_component.dart';
 import '../components/task_card_component.dart';
 import '../page_controllers/task_detail_page_controller.dart';

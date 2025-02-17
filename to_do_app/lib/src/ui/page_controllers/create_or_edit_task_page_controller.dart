@@ -1,11 +1,8 @@
 //Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:to_do_app/src/managers/data_manager.dart';
-import 'package:to_do_app/src/ui/popups/loading_popup.dart';
 
 //Project imports:
 import '../../../utils/function_utils.dart';
@@ -13,9 +10,11 @@ import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../enums/task_priority_enum.dart';
 import '../../interfaces/i_page_controller.dart';
+import '../../managers/data_manager.dart';
 import '../../managers/page_manager.dart';
 import '../../models/task_model.dart';
-import '../popups/alert_popup.dart' show AlertPopup;
+import '../popups/alert_popup.dart';
+import '../popups/loading_popup.dart';
 
 class CreateOrEditTaskPageController extends ControllerMVC
     implements IPageController {

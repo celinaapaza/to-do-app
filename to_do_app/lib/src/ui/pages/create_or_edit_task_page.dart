@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:to_do_app/src/enums/task_priority_enum.dart';
-import 'package:to_do_app/src/ui/components/text_field_component.dart';
-import 'package:to_do_app/utils/k_colors.dart';
-import 'package:to_do_app/utils/k_texts.dart';
 
 //Project imports:
+import '../../../utils/k_colors.dart';
+import '../../../utils/k_texts.dart';
+import '../../enums/task_priority_enum.dart';
 import '../components/custom_button_component.dart';
+import '../components/text_field_component.dart';
 import '../page_controllers/create_or_edit_task_page_controller.dart';
 
 class CreateOrEditTaskPage extends StatefulWidget {

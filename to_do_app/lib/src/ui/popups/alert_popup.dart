@@ -1,10 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:to_do_app/src/providers/theme_data_provider.dart';
 
 //Project imports:
 import '../../../utils/k_colors.dart';
 import '../../../utils/k_texts.dart';
+import '../../providers/theme_data_provider.dart';
 import '../components/custom_button_component.dart';
 
 class AlertPopup {

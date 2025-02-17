@@ -1,7 +1,9 @@
 //Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:to_do_app/src/managers/data_manager.dart';
-import 'package:to_do_app/utils/k_colors.dart';
+
+//Project imports:
+import '../managers/data_manager.dart';
+import '../../utils/k_colors.dart';
 
 class ThemeDataProvider with ChangeNotifier {
   static final ThemeDataProvider _instance = ThemeDataProvider._constructor();

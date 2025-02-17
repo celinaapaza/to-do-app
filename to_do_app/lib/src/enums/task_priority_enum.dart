@@ -1,7 +1,9 @@
 //Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:to_do_app/utils/k_colors.dart';
-import 'package:to_do_app/utils/k_texts.dart';
+
+//Project imports:
+import '../../utils/k_colors.dart';
+import '../../utils/k_texts.dart';
 
 enum TaskPriorityEnum { high, medium, low }
 
