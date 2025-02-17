@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 //Project imports:
 import '../../../utils/k_colors.dart';
 import '../../../utils/k_texts.dart';
-import '../../enums/task_order_type_enum.dart';
 import '../../models/task_model.dart';
 import '../../providers/theme_data_provider.dart';
 import '../components/switch_theme_component.dart';
@@ -207,19 +206,13 @@ class HomePageState extends StateMVC<HomePage> {
           ),
           GestureDetector(
             onTap: () {
-              //TODO: onTap Filters
+              _con.onTapSortButton();
             },
             child: Row(
               children: [
-                Icon(
-                  _con.filter.ascendingOrder
-                      ? Icons.keyboard_arrow_up_rounded
-                      : Icons.keyboard_arrow_down_rounded,
-                  color: kColorPrimary,
-                  size: 30,
-                ),
+                Icon(_con.filter.orderIcon, color: kColorPrimary, size: 30),
                 Text(
-                  _con.filter.taskOrderType?.label ?? "-",
+                  _con.filter.orderLabel,
                   style: Theme.of(
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: kColorPrimary),
@@ -230,7 +223,7 @@ class HomePageState extends StateMVC<HomePage> {
           ),
           GestureDetector(
             onTap: () {
-              //TODO: onTap Filters
+              _con.onTapFilterButton();
             },
             child: Row(
               children: [

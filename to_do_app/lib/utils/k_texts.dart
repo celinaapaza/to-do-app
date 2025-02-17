@@ -49,6 +49,7 @@ const String kTextRequiredField = "Campo requerido";
 const String kTextSaveChanges = "Guardar cambios";
 const String kTextSignIn = "Iniciar sesión";
 const String kTextSignUp = "Crear cuenta";
+const String kTextStatus = "Estados";
 const String kTextTasks = "Tareas";
 const String kTextTheme = "Tema";
 const String kTextTime = "Hora";

@@ -10,7 +10,7 @@ import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../managers/data_manager.dart';
-import '../../managers/page_manager.dart';
+import '../../managers/page_manager/page_manager.dart';
 import '../../models/task_model.dart';
 import '../popups/alert_popup.dart';
 

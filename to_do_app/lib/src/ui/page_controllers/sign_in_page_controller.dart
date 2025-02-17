@@ -13,7 +13,7 @@ import '../../../utils/page_args.dart';
 import '../../enums/firebase_error_code_enum.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../managers/data_manager.dart';
-import '../../managers/page_manager.dart';
+import '../../managers/page_manager/page_manager.dart';
 import '../../models/user_model.dart';
 import '../popups/alert_popup.dart';
 import '../popups/loading_popup.dart';

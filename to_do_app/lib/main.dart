@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'src/enums/page_names_enum.dart';
 import 'src/managers/data_manager.dart';
-import 'src/managers/page_manager.dart';
+import 'src/managers/page_manager/page_manager.dart';
 import 'src/providers/theme_data_provider.dart';
 import 'utils/k_colors.dart';
 

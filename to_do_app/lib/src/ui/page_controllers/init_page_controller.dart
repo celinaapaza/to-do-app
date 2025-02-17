@@ -3,7 +3,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 //Project imports:
 import '../../managers/data_manager.dart';
-import '../../managers/page_manager.dart';
+import '../../managers/page_manager/page_manager.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../../utils/page_args.dart';
 

@@ -7,9 +7,11 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../enums/task_order_type_enum.dart';
+import '../../enums/task_priority_enum.dart';
+import '../../enums/task_status_enum.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../managers/data_manager.dart';
-import '../../managers/page_manager.dart';
+import '../../managers/page_manager/page_manager.dart';
 import '../../models/filter_task_model.dart';
 import '../../models/task_model.dart';
 import '../../providers/theme_data_provider.dart';
@@ -37,8 +39,7 @@ class HomePageController extends ControllerMVC implements IPageController {
   @override
   void initPage() {
     filter = FilterTaskModel(
-      taskOrderType: TaskOrderTypeEnum.expirationDate,
-      ascendingOrder: false,
+      taskSortType: TaskSortTypeEnum.oldestExpirationDate,
       taskPrioritiesSelected: [],
       taskStatusSelected: [],
     );
@@ -69,7 +70,7 @@ class HomePageController extends ControllerMVC implements IPageController {
 
   void onSnapshotData(AsyncSnapshot snapshot) {
     if (snapshot.hasData) {
-      tasks = List<TaskModel>.from(
+      List<TaskModel> newList = List<TaskModel>.from(
         snapshot.data!.docs.map((DocumentSnapshot document) {
           Map<String, dynamic> data = document.data() as Map<String, dynamic>;
           TaskModel newTask = TaskModel.fromJson(data);
@@ -77,7 +78,81 @@ class HomePageController extends ControllerMVC implements IPageController {
           return newTask;
         }).toList(),
       );
+
+      tasks = _sortTasks(_filterTasks(newList));
     }
+  }
+
+  void onTapSortButton() {
+    PageManager().openSortTaskBottomSheet(
+      taskSortInit:
+          filter.taskSortType ?? TaskSortTypeEnum.oldestExpirationDate,
+      onSelectedTaskSort: (TaskSortTypeEnum newTaskSort) {
+        Navigator.pop(PageManager().currentContext);
+        setState(() {
+          filter.taskSortType = newTaskSort;
+        });
+      },
+    );
+  }
+
+  List<TaskModel> _sortTasks(List<TaskModel> list) {
+    try {
+      switch (filter.taskSortType) {
+        case TaskSortTypeEnum.oldestExpirationDate:
+          list.sort((a, b) => a.expirationDate!.compareTo(b.expirationDate!));
+          break;
+        case TaskSortTypeEnum.latestExpirationDate:
+          list.sort((a, b) => b.expirationDate!.compareTo(a.expirationDate!));
+          break;
+        case TaskSortTypeEnum.descendingPriority:
+          list.sort((a, b) => a.taskPriority!.id.compareTo(b.taskPriority!.id));
+          break;
+        case TaskSortTypeEnum.ascendingPriority:
+          list.sort((a, b) => b.taskPriority!.id.compareTo(a.taskPriority!.id));
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+
+    return list;
+  }
+
+  void onTapFilterButton() async {
+    await PageManager().openFilterTaskBottomSheet(filterTask: filter);
+
+    setState(() {
+      //TO UPDATE TASKS
+    });
+  }
+
+  List<TaskModel> _filterTasks(List<TaskModel> list) {
+    if (filter.taskStatusSelected.isEmpty &&
+        filter.taskPrioritiesSelected.isEmpty) {
+      return list;
+    }
+
+    List<TaskModel> filteredTasks =
+        list.where((task) {
+          for (TaskStatusEnum status in filter.taskStatusSelected) {
+            if (status.isCompleted == task.isCompleted) {
+              return true;
+            }
+          }
+
+          for (TaskPriorityEnum priority in filter.taskPrioritiesSelected) {
+            if (priority.id == task.taskPriority!.id) {
+              return true;
+            }
+          }
+
+          return false;
+        }).toList();
+
+    return filteredTasks;
   }
 
   void onTapTaskCheckBox(TaskModel task, bool newValue) async {

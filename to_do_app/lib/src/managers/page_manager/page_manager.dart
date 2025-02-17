@@ -3,23 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 //Project imports:
-import '../../utils/page_args.dart';
-import '../enums/page_names_enum.dart';
-import '../interfaces/i_page_controller.dart';
-import '../ui/page_controllers/create_or_edit_task_page_controller.dart';
-import '../ui/page_controllers/home_page_controller.dart';
-import '../ui/page_controllers/init_page_controller.dart';
-import '../ui/page_controllers/sign_in_page_controller.dart';
-import '../ui/page_controllers/sign_up_page_controller.dart';
-import '../ui/page_controllers/task_detail_page_controller.dart';
-import '../ui/pages/create_or_edit_task_page.dart';
-import '../ui/pages/home_page.dart';
-import '../ui/pages/init_page.dart';
-import '../ui/pages/sign_in_page.dart';
-import '../ui/pages/sign_up_page.dart';
-import '../ui/pages/task_detail_page.dart';
+import '../../../utils/k_colors.dart';
+import '../../../utils/k_texts.dart';
+import '../../../utils/page_args.dart';
+import '../../enums/page_names_enum.dart';
+import '../../enums/task_order_type_enum.dart';
+import '../../interfaces/i_page_controller.dart';
+import '../../models/filter_task_model.dart';
+import '../../providers/theme_data_provider.dart';
+import '../../ui/bottom_sheets/filter_task_bottom_sheet.dart';
+import '../../ui/page_controllers/create_or_edit_task_page_controller.dart';
+import '../../ui/page_controllers/home_page_controller.dart';
+import '../../ui/page_controllers/init_page_controller.dart';
+import '../../ui/page_controllers/sign_in_page_controller.dart';
+import '../../ui/page_controllers/sign_up_page_controller.dart';
+import '../../ui/page_controllers/task_detail_page_controller.dart';
+import '../../ui/pages/create_or_edit_task_page.dart';
+import '../../ui/pages/home_page.dart';
+import '../../ui/pages/init_page.dart';
+import '../../ui/pages/sign_in_page.dart';
+import '../../ui/pages/sign_up_page.dart';
+import '../../ui/pages/task_detail_page.dart';
 
-class PageManager {
+part 'page_manager.bottom_sheet.dart';
+
+class PageManager with PageManagerBottomSheet {
   static final PageManager _instance = PageManager._constructor();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
