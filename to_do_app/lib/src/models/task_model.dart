@@ -12,6 +12,7 @@ class TaskModel {
   DateTime? expirationDate;
   bool isCompleted = false;
   int? _taskPriorityId;
+  int? notificationId;
 
   TaskModel({
     this.uid,
@@ -20,6 +21,7 @@ class TaskModel {
     this.expirationDate,
     this.isCompleted = false,
     int? taskPriorityId,
+    int? notificationId,
   }) {
     _taskPriorityId = taskPriorityId;
   }
@@ -31,6 +33,7 @@ class TaskModel {
     expirationDate = dateTimeTryParse(json['expirationDate']);
     isCompleted = json['isCompleted'] == true;
     _taskPriorityId = json['taskPriorityId'];
+    notificationId = json['notificationId'];
   }
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +42,7 @@ class TaskModel {
     'expirationDate': expirationDate?.toString(),
     'isCompleted': isCompleted,
     'taskPriorityId': _taskPriorityId,
+    'notificationId': notificationId,
   };
 
   TaskPriorityEnum? get taskPriority => TaskPriorityEnum.values

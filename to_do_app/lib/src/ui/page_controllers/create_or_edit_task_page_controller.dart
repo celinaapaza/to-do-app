@@ -132,6 +132,7 @@ class CreateOrEditTaskPageController extends ControllerMVC
       onLoading: DataManager().updateTask(
         TaskModel(
           uid: initialTask?.uid,
+          notificationId: initialTask?.notificationId,
           title: titleController.text,
           description: descriptionController.text,
           expirationDate: expirationDate,

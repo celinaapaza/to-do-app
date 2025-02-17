@@ -11,6 +11,7 @@ import '../../enums/task_priority_enum.dart';
 import '../../enums/task_status_enum.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../managers/data_manager.dart';
+import '../../managers/notifications_manager.dart';
 import '../../managers/page_manager/page_manager.dart';
 import '../../models/filter_task_model.dart';
 import '../../models/task_model.dart';
@@ -45,6 +46,8 @@ class HomePageController extends ControllerMVC implements IPageController {
     );
 
     streamTasks = DataManager().getListTask();
+
+    NotificationsManager().requestPermissions();
   }
 
   @override

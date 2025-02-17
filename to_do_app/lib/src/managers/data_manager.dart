@@ -1,6 +1,9 @@
 //Dart imports:
 import 'dart:convert';
 
+//Flutter imports:
+import 'package:flutter/widgets.dart';
+
 //Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +14,7 @@ import '../data_access/remote_data_access.dart';
 import '../interfaces/i_data_access.dart';
 import '../models/task_model.dart';
 import '../models/user_model.dart';
+import 'notifications_manager.dart';
 
 class DataManager {
   static final DataManager _instance = DataManager._constructor();
@@ -51,6 +55,14 @@ class DataManager {
       return UserModel.fromJson(jsonDecode(jsonString));
     }
     return null;
+  }
+
+  void setLastNotificationId(int id) {
+    prefs?.setInt('lastNotificationId', id);
+  }
+
+  int getLastNotificationId() {
+    return prefs?.getInt('lastNotificationId') ?? 0;
   }
 
   //#endregion
@@ -146,12 +158,20 @@ class DataManager {
 
   Future<bool> createTask(TaskModel task) async {
     String? userUid = getUserPrefs()?.uid;
+    task.notificationId = getLastNotificationId() + 1;
+    setLastNotificationId(task.notificationId!);
 
     if (userUid == null) {
       return false;
     }
 
-    return await _dataAccess?.createTask(userUid, task) ?? false;
+    bool result = await _dataAccess?.createTask(userUid, task) ?? false;
+
+    if (result) {
+      scheduleAlertNotification(task);
+    }
+
+    return result;
   }
 
   Future<bool> updateTask(TaskModel task) async {
@@ -161,7 +181,35 @@ class DataManager {
       return false;
     }
 
-    return await _dataAccess?.updateTask(userUid, task) ?? false;
+    bool result = await _dataAccess?.updateTask(userUid, task) ?? false;
+
+    if (result) {
+      scheduleAlertNotification(task);
+    }
+
+    return result;
+  }
+
+  Future<void> scheduleAlertNotification(TaskModel task) async {
+    if (task.notificationId == null) {
+      return;
+    }
+
+    try {
+      await NotificationsManager().cancelNotification(task.notificationId!);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+
+    if (task.isCompleted) {
+      return;
+    }
+
+    try {
+      await NotificationsManager().scheduleAlertNotification(task);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<bool> deleteTask(String taskUid) async {
