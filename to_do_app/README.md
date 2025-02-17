@@ -1,16 +1,30 @@
-# to_do_app
+# To-Do App
 
-A new Flutter project.
+Aplicación para la gestión de tareas diarias.
 
-## Getting Started
+## Cómo ejecutar el proyecto
 
-This project is a starting point for a Flutter application.
+Sigue estos pasos para ejecutar el proyecto.
 
-A few resources to get you started if this is your first Flutter project:
+## Requisitos
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+*   Flutter 3.29.0
+*   Dart 3.7.0
+*   IDE : VS Code o Android Studio
+*   Dispositivo Android (o emulador)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Instrucciones
+
+1.  Clona el repositorio: to-do-app.
+
+2.  Navega al directorio del proyecto, ejecuta siguiente comando:
+    cd to_do_app
+
+3.  Instala las dependencias, ejecutando:
+    flutter pub get
+
+4.  Conecta un dispositivo o inicia un emulador.
+
+5.  Ejecuta la aplicación, con el siguiente comando:
+    flutter run
+
