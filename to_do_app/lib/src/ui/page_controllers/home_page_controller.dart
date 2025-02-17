@@ -109,7 +109,7 @@ class HomePageController extends ControllerMVC implements IPageController {
       onError: (error) {
         AlertPopup(
           context: PageManager().currentContext,
-          title: kTextTitleError,
+          title: kTextErrorTitle,
           description: error.toString(),
         ).show();
       },

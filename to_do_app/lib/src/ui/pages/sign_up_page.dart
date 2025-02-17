@@ -71,6 +71,8 @@ class SignUpPageState extends StateMVC<SignUpPage> {
                 controller: _con.emailController,
                 focusNode: _con.emailFocus,
                 hintText: kTextEmail,
+                error: _con.emailError,
+                labelError: _con.emailLabelError,
                 onTapOutside: (_) {
                   if (_con.emailFocus.hasFocus) {
                     _con.emailFocus.unfocus();
@@ -82,8 +84,10 @@ class SignUpPageState extends StateMVC<SignUpPage> {
                 controller: _con.passwordController,
                 focusNode: _con.passwordFocus,
                 hintText: kTextPassword,
-                obscureText: _con.showPassword,
+                obscureText: !_con.showPassword,
                 suffixIcon: _suffixIconPassword(),
+                error: _con.passwordError,
+                labelError: _con.passwordLabelError,
                 onTapOutside: (_) {
                   if (_con.passwordFocus.hasFocus) {
                     _con.passwordFocus.unfocus();
@@ -95,8 +99,10 @@ class SignUpPageState extends StateMVC<SignUpPage> {
                 controller: _con.repeatPasswordController,
                 focusNode: _con.repeatPasswordFocus,
                 hintText: kTextRepeatPassword,
-                obscureText: _con.showPassword,
+                obscureText: !_con.showPassword,
                 suffixIcon: _suffixIconPassword(),
+                error: _con.repeatPasswordError,
+                labelError: _con.repeatPasswordLabelError,
                 onTapOutside: (_) {
                   if (_con.repeatPasswordFocus.hasFocus) {
                     _con.repeatPasswordFocus.unfocus();

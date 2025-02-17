@@ -113,7 +113,7 @@ class AlertPopup {
       onTap: () {
         Navigator.pop(context, false);
       },
-      child: const Icon(Icons.close, size: 24),
+      child: const Icon(Icons.close, size: 24, color: kColorPrimary),
     );
   }
 }

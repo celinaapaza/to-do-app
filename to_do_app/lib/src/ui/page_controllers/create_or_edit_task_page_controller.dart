@@ -141,7 +141,7 @@ class CreateOrEditTaskPageController extends ControllerMVC
       onError: (error) {
         AlertPopup(
           context: PageManager().currentContext,
-          title: kTextTitleError,
+          title: kTextErrorTitle,
           description: error.toString(),
         ).show();
       },
@@ -167,7 +167,7 @@ class CreateOrEditTaskPageController extends ControllerMVC
       onError: (error) {
         AlertPopup(
           context: PageManager().currentContext,
-          title: kTextTitleError,
+          title: kTextErrorTitle,
           description: error.toString(),
         ).show();
       },

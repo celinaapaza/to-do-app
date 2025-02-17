@@ -158,7 +158,7 @@ class PageManager {
   }
 
   goSignUpPage({PageArgs? args}) {
-    _goPage(PageNames.signUp, args: args, makeRootPage: true);
+    _goPage(PageNames.signUp, args: args, makeRootPage: false);
   }
 
   goHomePage({PageArgs? args}) {

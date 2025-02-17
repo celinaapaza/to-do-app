@@ -10,12 +10,30 @@ const String kTextDeleteTaskTitle = "Eliminar tarea";
 const String kTextDescription = "Descripción";
 const String kTextEdit = "Editar";
 const String kTextEmail = "Correo electónico";
+const String kTextErrorDescription =
+    "Lo sentimos, ha ocurrido un error. Intenta nuevamente o regresa en otro momento.";
+const String kTextErrorInvalidCredentialDescription =
+    "Los datos ingresados son incorrectos. Revisa el correo y la contraseña e intenta nuevamente.";
+const String kTextErrorLengthPassword =
+    "La contraseña debe tener al menos 6 caracteres";
+const String kTextErrorNetworkDescription =
+    "Revisa tu conexión a internet e intenta nuevamente.";
+const String kTextErrorNetworkTitle = "Sin conexión";
+const String kTextErrorNotMatchPasswords = "La contraseñas no coinciden";
+const String kTextErrorTitle = "Ocurrió un error";
+const String kTextErrorUserDisbledDescription =
+    "Su usuario se encuentra deshabilitado.";
+const String kTextErrorUserDisbledTitle = "Usuario deshabilitado";
+const String kTextErrrorEmailAlreadyUse =
+    "Ya existe una cuenta asociada a este correo";
 const String kTextExitAppDescription =
     "Estas por salir de la App. ¿Desea continuar?";
 const String kTextExitAppTitle = "Salir de To-Do App";
 const String kTextExpirationDateLarge = "Fecha de venc.";
 const String kTextExpirationDateShort = "Venc.";
 const String kTextGoogleLogin = "Iniciar sesión con Google";
+const String kTextInvalidCredentialTitle = "Credenciales inválidas";
+const String kTextInvalidEmail = "Correo eletrónico inválido";
 const String kTextLogout = "Cerrar sesión";
 const String kTextNotAccount = "¿Aún no tienes una cuenta?";
 const String kTextNotTasks = "No hay tareas para mostrar";
@@ -35,8 +53,7 @@ const String kTextTasks = "Tareas";
 const String kTextTheme = "Tema";
 const String kTextTime = "Hora";
 const String kTextTitle = "Título";
-const String kTextTitleDescription =
-    "Lo sentimos, ha ocurrido un error. Intenta nuevamente o regresa en otro momento.";
-const String kTextTitleError = "Ocurrió un error";
 const String kTextTitleHome = "To-Do App";
 const String kTextUser = "Usuario";
+const String kTextUserNotFound = "Usuario no encontrado";
+const String kTextWrongPassword = "Contraseña incorrecta";
