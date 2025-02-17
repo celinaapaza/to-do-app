@@ -37,3 +37,6 @@ const String kTextNotTasks = "No hay tareas para mostrar";
 const String kTextDeleteTaskTitle = "Eliminar tarea";
 const String kTextDeleteTaskDescription =
     "Estás a punto de eliminar esta tarea. Esta acción es irreversible y resultará en la eliminación permanente de la tarea y todos los datos relacionados.";
+const String kTextExitAppTitle = "Salir de To-Do App";
+const String kTextExitAppDescription =
+    "Estas por salir de la App. ¿Desea continuar?";

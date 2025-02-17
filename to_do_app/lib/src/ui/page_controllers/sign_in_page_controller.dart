@@ -52,7 +52,15 @@ class SignInPageController extends ControllerMVC implements IPageController {
 
   void onPopInvoked(didPop, result) {
     if (didPop) return;
-    //TODO: salir de la app?
+
+    AlertPopup(
+      context: PageManager().currentContext,
+      title: kTextExitAppTitle,
+      description: kTextExitAppDescription,
+      onAcceptPressed: () {
+        PageManager().closeApp();
+      },
+    ).show();
   }
 
   void onTapShowPassword() {
