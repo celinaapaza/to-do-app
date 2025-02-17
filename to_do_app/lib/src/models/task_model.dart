@@ -1,11 +1,12 @@
-//Project imports:
+//Package imports:
 import 'package:collection/collection.dart';
 
+//Project imports:
 import '../enums/task_priority_enum.dart';
 import '../../utils/function_utils.dart';
 
 class TaskModel {
-  int? taskId;
+  String? uid;
   String? title;
   String? description;
   DateTime? expirationDate;
@@ -13,7 +14,7 @@ class TaskModel {
   int? _taskPriorityId;
 
   TaskModel({
-    this.taskId,
+    this.uid,
     this.title,
     this.description,
     this.expirationDate,
@@ -24,7 +25,7 @@ class TaskModel {
   }
 
   TaskModel.fromJson(Map<String, dynamic> json) {
-    taskId = json['taskId'];
+    uid = json['uid'];
     title = json['title'];
     description = json['description'];
     expirationDate = dateTimeTryParse(json['expirationDate']);

@@ -1,4 +1,5 @@
 //Flutter imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 //Package imports:
@@ -173,9 +174,22 @@ class HomePageState extends StateMVC<HomePage> {
   }
 
   Widget _body() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_header(), Expanded(child: _taskList())],
+    return StreamBuilder<Object>(
+      stream: _con.streamTasks,
+      builder: (context, snapshot) {
+        _con.onSnapshotData(snapshot);
+        return _con.tasks.isEmpty
+            ? Center(
+              child: Text(
+                kTextNotTasks,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            )
+            : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [_header(), Expanded(child: _taskList())],
+            );
+      },
     );
   }
 

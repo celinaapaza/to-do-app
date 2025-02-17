@@ -97,12 +97,12 @@ class ThemeDataProvider with ChangeNotifier {
       ),
     ),
     checkboxTheme: CheckboxThemeData(
-      checkColor: WidgetStateProperty.all(Colors.white),
+      checkColor: WidgetStateProperty.all(kColorBackgroundLight),
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return kColorPrimary;
         } else {
-          return kColorWhite;
+          return kColorBackgroundLight;
         }
       }),
     ),
@@ -131,6 +131,32 @@ class ThemeDataProvider with ChangeNotifier {
     ),
     radioTheme: const RadioThemeData(
       fillColor: WidgetStatePropertyAll(kColorPrimary),
+    ),
+    colorScheme: const ColorScheme.light(
+      primary: kColorPrimary,
+      secondary: kColorPrimary,
+      onSurface: kColorPrimary,
+      surfaceTint: kColorWhite,
+    ),
+    textButtonTheme: const TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(kColorPrimary),
+        textStyle: WidgetStatePropertyAll(
+          TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+      ),
+    ),
+    datePickerTheme: const DatePickerThemeData(
+      backgroundColor: kColorBackgroundLight,
+      headerForegroundColor: kColorPrimary,
+      headerBackgroundColor: kColorBackgroundLight,
+      weekdayStyle: TextStyle(color: kColorPrimary),
+    ),
+    timePickerTheme: const TimePickerThemeData(
+      backgroundColor: kColorBackgroundLight,
+      entryModeIconColor: kColorPrimary,
+      dialBackgroundColor: kColorBackgroundLight,
+      dialHandColor: kColorPrimary,
     ),
   );
 
@@ -211,12 +237,12 @@ class ThemeDataProvider with ChangeNotifier {
       ),
     ),
     checkboxTheme: CheckboxThemeData(
-      checkColor: WidgetStateProperty.all(Colors.white),
+      checkColor: WidgetStateProperty.all(kColorBackgroundDark),
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return kColorPrimary;
         } else {
-          return kColorWhite;
+          return kColorBackgroundDark;
         }
       }),
     ),
@@ -245,6 +271,33 @@ class ThemeDataProvider with ChangeNotifier {
     ),
     radioTheme: const RadioThemeData(
       fillColor: WidgetStatePropertyAll(kColorPrimary),
+    ),
+    colorScheme: const ColorScheme.light(
+      primary: kColorPrimary,
+      secondary: kColorPrimary,
+      onSurface: kColorPrimary,
+      surfaceTint: kColorWhite,
+    ),
+    textButtonTheme: const TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(kColorPrimary),
+        textStyle: WidgetStatePropertyAll(
+          TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+      ),
+    ),
+    datePickerTheme: const DatePickerThemeData(
+      backgroundColor: kColorBackgroundDark,
+      headerForegroundColor: kColorPrimary,
+      headerBackgroundColor: kColorBackgroundDark,
+      weekdayStyle: TextStyle(color: kColorPrimary),
+    ),
+    timePickerTheme: const TimePickerThemeData(
+      backgroundColor: kColorBackgroundDark,
+      entryModeIconColor: kColorPrimary,
+      dialBackgroundColor: kColorBackgroundDark,
+      dialHandColor: kColorPrimary,
+      hourMinuteColor: kColorBackgroundDark,
     ),
   );
 }

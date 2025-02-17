@@ -17,7 +17,7 @@ const String kTextCreateTask = "Crear tarea";
 const String kTextSaveChanges = "Guardar cambios";
 const String kTextDate = "Fecha";
 const String kTextTime = "Hora";
-const String kTextRequiredFiled = "Campo requerido";
+const String kTextRequiredField = "Campo requerido";
 const String kTextPriorityHigh = "Alta";
 const String kTextPriorityMedium = "Media";
 const String kTextPriorityLow = "Baja";
@@ -31,3 +31,9 @@ const String kTextOr = "ó";
 const String kTextNotAccount = "¿Aún no tienes una cuenta?";
 const String kTextAccept = "Aceptar";
 const String kTextTitleError = "Ocurrió un error";
+const String kTextTitleDescription =
+    "Lo sentimos, ha ocurrido un error. Intenta nuevamente o regresa en otro momento.";
+const String kTextNotTasks = "No hay tareas para mostrar";
+const String kTextDeleteTaskTitle = "Eliminar tarea";
+const String kTextDeleteTaskDescription =
+    "Estás a punto de eliminar esta tarea. Esta acción es irreversible y resultará en la eliminación permanente de la tarea y todos los datos relacionados.";

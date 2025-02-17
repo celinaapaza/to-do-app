@@ -74,10 +74,13 @@ class CreateOrEditTaskPageState extends StateMVC<CreateOrEditTaskPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 5),
             TextFieldComponent(
               controller: _con.titleController,
               focusNode: _con.titleFocus,
               hintText: kTextTitle,
+              error: _con.titleError,
+              labelError: kTextRequiredField,
               onTapOutside: (_) {
                 if (_con.titleFocus.hasFocus) {
                   _con.titleFocus.unfocus();
@@ -109,7 +112,8 @@ class CreateOrEditTaskPageState extends StateMVC<CreateOrEditTaskPage> {
                     controller: _con.dateController,
                     hintText: kTextDate,
                     readOnly: true,
-                    enabled: false,
+                    error: _con.expirationDateError,
+                    labelError: kTextRequiredField,
                     onTap: _con.onSelectDay,
                   ),
                 ),
@@ -119,7 +123,9 @@ class CreateOrEditTaskPageState extends StateMVC<CreateOrEditTaskPage> {
                     controller: _con.timeController,
                     hintText: kTextTime,
                     readOnly: true,
-                    enabled: false,
+                    enabled: _con.dateController.text.isNotEmpty,
+                    error: _con.expirationDateError,
+                    labelError: "",
                     onTap: _con.onSelectHour,
                   ),
                 ),

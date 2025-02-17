@@ -2,6 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/firebase_options.dart';
@@ -54,6 +55,12 @@ class MyApp extends StatelessWidget {
         return PageManager().getRoute(settings);
       },
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('es', '')],
       locale: const Locale("es", ''),
       // builder: (_, Widget? child) {
       //   final Overlay overlay = Overlay(

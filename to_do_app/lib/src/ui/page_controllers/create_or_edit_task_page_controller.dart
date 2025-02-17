@@ -1,15 +1,21 @@
 //Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 //Package imports:
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:to_do_app/src/managers/data_manager.dart';
+import 'package:to_do_app/src/ui/popups/loading_popup.dart';
 
 //Project imports:
+import '../../../utils/function_utils.dart';
+import '../../../utils/k_texts.dart';
 import '../../../utils/page_args.dart';
 import '../../enums/task_priority_enum.dart';
 import '../../interfaces/i_page_controller.dart';
 import '../../managers/page_manager.dart';
 import '../../models/task_model.dart';
+import '../popups/alert_popup.dart' show AlertPopup;
 
 class CreateOrEditTaskPageController extends ControllerMVC
     implements IPageController {
@@ -35,7 +41,11 @@ class CreateOrEditTaskPageController extends ControllerMVC
   late FocusNode titleFocus;
   late FocusNode descriptionFocus;
 
+  DateTime? expirationDate;
   late TaskPriorityEnum prioritySelected;
+
+  bool titleError = false;
+  bool expirationDateError = false;
 
   @override
   void initPage() {
@@ -45,7 +55,14 @@ class CreateOrEditTaskPageController extends ControllerMVC
     titleFocus = FocusNode();
     descriptionFocus = FocusNode();
 
-    titleController = TextEditingController(text: initialTask?.title ?? '');
+    titleController = TextEditingController(text: initialTask?.title ?? '')
+      ..addListener(() {
+        if (titleError) {
+          setState(() {
+            titleError = false;
+          });
+        }
+      });
 
     descriptionController = TextEditingController(
       text: initialTask?.description ?? '',
@@ -53,11 +70,19 @@ class CreateOrEditTaskPageController extends ControllerMVC
 
     dateController = TextEditingController(
       text: initialTask?.expirationDateFormat() ?? '',
-    );
+    )..addListener(() {
+      if (expirationDateError) {
+        setState(() {
+          expirationDateError = false;
+        });
+      }
+    });
 
     timeController = TextEditingController(
       text: initialTask?.expirtaionTimeFormat() ?? '',
     );
+
+    expirationDate = initialTask?.expirationDate?.copyWith();
 
     prioritySelected = initialTask?.taskPriority ?? TaskPriorityEnum.low;
   }
@@ -78,6 +103,14 @@ class CreateOrEditTaskPageController extends ControllerMVC
   }
 
   void onTapButton() {
+    _validateTitle();
+    _validateExpirationError();
+
+    if (titleError || expirationDateError) {
+      setState(() {});
+      return;
+    }
+
     if (initialTask != null) {
       _updateTask();
       return;
@@ -86,13 +119,99 @@ class CreateOrEditTaskPageController extends ControllerMVC
     _createTask();
   }
 
-  void _updateTask() {}
+  void _validateTitle() {
+    titleError = titleController.text.isEmpty;
+  }
 
-  void _createTask() {}
+  void _validateExpirationError() {
+    expirationDateError = expirationDate == null;
+  }
 
-  void onSelectHour() {}
+  void _updateTask() async {
+    await LoadingPopup(
+      context: PageManager().currentContext,
+      onLoading: DataManager().updateTask(
+        TaskModel(
+          uid: initialTask?.uid,
+          title: titleController.text,
+          description: descriptionController.text,
+          expirationDate: expirationDate,
+          taskPriorityId: prioritySelected.id,
+        ),
+      ),
+      onError: (error) {
+        AlertPopup(
+          context: PageManager().currentContext,
+          title: kTextTitleError,
+          description: error.toString(),
+        ).show();
+      },
+      onResult: (bool result) {
+        if (result) {
+          PageManager().goBack();
+        }
+      },
+    ).show();
+  }
 
-  void onSelectDay() {}
+  void _createTask() async {
+    await LoadingPopup(
+      context: PageManager().currentContext,
+      onLoading: DataManager().createTask(
+        TaskModel(
+          title: titleController.text,
+          description: descriptionController.text,
+          expirationDate: expirationDate,
+          taskPriorityId: prioritySelected.id,
+        ),
+      ),
+      onError: (error) {
+        AlertPopup(
+          context: PageManager().currentContext,
+          title: kTextTitleError,
+          description: error.toString(),
+        ).show();
+      },
+      onResult: (bool result) {
+        if (result) {
+          PageManager().goBack();
+        }
+      },
+    ).show();
+  }
+
+  void onSelectHour() async {
+    TimeOfDay? result = await showTimePicker(
+      context: PageManager().currentContext,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (result != null) {
+      expirationDate = expirationDate?.copyWith(
+        hour: result.hour,
+        minute: result.minute,
+      );
+      dateController.text = getFormattedDate(expirationDate);
+      timeController.text = getFormattedTime(expirationDate);
+      setState(() {});
+    }
+  }
+
+  void onSelectDay() async {
+    DateTime? result = await showDatePicker(
+      context: PageManager().currentContext,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 1000)),
+      locale: const Locale("es"),
+    );
+
+    if (result != null) {
+      expirationDate = result.copyWith(hour: 0, minute: 0);
+      dateController.text = getFormattedDate(expirationDate);
+      timeController.text = getFormattedTime(expirationDate);
+      setState(() {});
+    }
+  }
 
   void onSelectPriority(TaskPriorityEnum newValue) {
     setState(() {

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 const Color kColorPrimary = Color.fromARGB(255, 2, 152, 102);
-const Color kColorPrimaryWithOpacity = Color.fromRGBO(2, 188, 125, 0.5);
+const Color kColorPrimaryWithOpacity = Color.fromRGBO(2, 138, 93, 0.4);
 const Color kColorBackgroundLight = Color(0XFFF6F6F4);
 const Color kColorShadowLight = Color.fromRGBO(2, 188, 125, 0.3);
 const Color kColorShadowDark = Color.fromRGBO(178, 178, 178, 0.5);

@@ -67,9 +67,11 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
   }
 
   Widget _body() {
-    return Column(
-      children: [
-        Padding(
+    return StreamBuilder<Object>(
+      stream: _con.streamTask,
+      builder: (context, snapshot) {
+        _con.onSnapshotData(snapshot);
+        return Padding(
           padding: const EdgeInsets.all(20),
           child: Hero(
             tag: _con.task.hashCode.toString(),
@@ -81,10 +83,11 @@ class TaskDetailPageState extends StateMVC<TaskDetailPage> {
               isCompleted: _con.task?.isCompleted ?? false,
               onTapCheckBox:
                   (bool newValue) => _con.onTapTaskCheckBox(newValue),
+              maxLineDescription: 100,
             ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 

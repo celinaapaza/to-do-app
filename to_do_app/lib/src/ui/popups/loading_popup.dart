@@ -25,7 +25,6 @@ class LoadingPopup {
   Future show() {
     return showDialog(
       context: context,
-      barrierColor: kColorPrimaryWithOpacity,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return _dialog();

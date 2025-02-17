@@ -20,6 +20,8 @@ class InitPageController extends ControllerMVC implements IPageController {
 
   PageArgs? args;
 
+  bool hasSession = false;
+
   @override
   void initPage() {}
 
@@ -31,6 +33,7 @@ class InitPageController extends ControllerMVC implements IPageController {
 
   Future<void> initApp() async {
     DataManager().init();
+    hasSession = await DataManager().hasSession();
 
     await Future.delayed(const Duration(seconds: 2));
 
@@ -38,8 +41,10 @@ class InitPageController extends ControllerMVC implements IPageController {
   }
 
   void goInitialPage() {
-    //TODO: depende de si hay sesion o no
-    PageManager().goSignInPage();
-    // PageManager().goHomePage();
+    if (hasSession) {
+      PageManager().goHomePage();
+    } else {
+      PageManager().goSignInPage();
+    }
   }
 }
